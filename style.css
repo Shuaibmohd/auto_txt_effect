@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap');
+:root{
+    --bg-clr: #FFF3E0;
+    --typewritter-speed: 6s;
+    --typewritter-char: 30;
+}
+*{
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', monospace;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    min-height: 100vh;
+    background: var(--bg-clr);
+    
+    
+}
+
+h1 {
+    font-size: clamp(1rem, 3vw + 1rem, 4rem);
+    font-family: 'Source Sans Pro', monospace;
+    position: relative;
+    letter-spacing: 6px;
+    width: max-content;
+    font-weight: 400;
+    
+    
+}
+
+h1::before,
+h1::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* transition: 2s ease; */
+}
+h1::before{
+    background: var(--bg-clr);
+    animation: 
+    typewritter var(--typewritter-speed) steps(var(--typewritter-char)) 1s forwards;
+    /* blink var(--typewritter-speed) steps(30) forwards;       */
+}
+
+h1::after {
+    width: 0.125em;
+    background: #000;
+    animation: 
+    typewritter var(--typewritter-speed) steps(var(--typewritter-char)) 1s forwards,
+    blinking 750ms steps(30) infinite;
+}
+
+
+.subtitle {
+    color: hsl(0 0% 0% / 0.7);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(3rem);
+    /* animation: fadeInUp 2s ease forwards; */
+    animation: fadeInUp 2s ease calc(var(--typewritter-speed) + 2s) forwards;
+}
+
+@keyframes typewritter {
+    to {
+        left: 100%
+    }
+}
+
+@keyframes blinking {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
